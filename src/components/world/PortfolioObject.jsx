@@ -145,35 +145,37 @@ function Overgrowth({ overgrowth, hovered, variant = 0 }) {
   }
   return (
     <g className={`overgrowth vines ${hovered ? "active" : ""}`}>
-      {/* Left climbing vine */}
-      <path className="vine-line" d="M4 62 C 8 50, 1 40, 9 29 C 13 21, 7 15, 13 7" />
-      {/* Right climbing vine */}
-      <path className="vine-line vine-line--b" d="M50 62 C 46 50, 53 40, 45 29 C 41 21, 47 15, 41 7" />
+      {/* Left climbing vine - winds side to side rather than straight up */}
+      <path className="vine-line" d="M4 62 C 16 56, -2 50, 12 43 C 22 38, 2 32, 14 25 C 20 20, 0 15, 12 9 C 16 6, 8 4, 15 1" />
+      {/* Right climbing vine - mirrored wind */}
+      <path className="vine-line vine-line--b" d="M50 62 C 38 56, 56 50, 42 43 C 32 38, 52 32, 40 25 C 34 20, 54 15, 42 9 C 38 6, 46 4, 39 1" />
       {/* Leaves along the vines */}
-      <ellipse className="vine-leaf" cx="4" cy="41" rx="3" ry="2" transform="rotate(-30 4 41)" style={{ transitionDelay: "180ms" }} />
-      <ellipse className="vine-leaf" cx="10" cy="24" rx="2.6" ry="1.8" transform="rotate(20 10 24)" style={{ transitionDelay: "260ms" }} />
-      <ellipse className="vine-leaf" cx="50" cy="41" rx="3" ry="2" transform="rotate(30 50 41)" style={{ transitionDelay: "200ms" }} />
-      <ellipse className="vine-leaf" cx="44" cy="24" rx="2.6" ry="1.8" transform="rotate(-20 44 24)" style={{ transitionDelay: "280ms" }} />
+      <ellipse className="vine-leaf" cx="0" cy="47" rx="3.2" ry="2.1" transform="rotate(-25 0 47)" style={{ transitionDelay: "180ms" }} />
+      <ellipse className="vine-leaf" cx="13" cy="26" rx="2.8" ry="1.9" transform="rotate(30 13 26)" style={{ transitionDelay: "260ms" }} />
+      <ellipse className="vine-leaf" cx="1" cy="12" rx="2.4" ry="1.7" transform="rotate(-15 1 12)" style={{ transitionDelay: "340ms" }} />
+      <ellipse className="vine-leaf" cx="54" cy="47" rx="3.2" ry="2.1" transform="rotate(25 54 47)" style={{ transitionDelay: "200ms" }} />
+      <ellipse className="vine-leaf" cx="41" cy="26" rx="2.8" ry="1.9" transform="rotate(-30 41 26)" style={{ transitionDelay: "280ms" }} />
+      <ellipse className="vine-leaf" cx="53" cy="12" rx="2.4" ry="1.7" transform="rotate(15 53 12)" style={{ transitionDelay: "360ms" }} />
       {/* Little flowers blooming at the vine tips */}
-      <g className="vine-flower" style={{ transitionDelay: "420ms" }} transform="translate(13 7)">
-        <circle className="vine-flower-petal" cx="0" cy="-3" r="1.8" />
-        <circle className="vine-flower-petal" cx="3" cy="0" r="1.8" />
-        <circle className="vine-flower-petal" cx="0" cy="3" r="1.8" />
-        <circle className="vine-flower-petal" cx="-3" cy="0" r="1.8" />
-        <circle className="vine-flower-center" cx="0" cy="0" r="1.4" />
+      <g className="vine-flower" style={{ transitionDelay: "420ms" }} transform="translate(15 1)">
+        <circle className="vine-flower-petal" cx="0" cy="-3" r="1.9" />
+        <circle className="vine-flower-petal" cx="3" cy="0" r="1.9" />
+        <circle className="vine-flower-petal" cx="0" cy="3" r="1.9" />
+        <circle className="vine-flower-petal" cx="-3" cy="0" r="1.9" />
+        <circle className="vine-flower-center" cx="0" cy="0" r="1.5" />
       </g>
-      <g className="vine-flower vine-flower--b" style={{ transitionDelay: "480ms" }} transform="translate(41 7)">
-        <circle className="vine-flower-petal" cx="0" cy="-3" r="1.8" />
-        <circle className="vine-flower-petal" cx="3" cy="0" r="1.8" />
-        <circle className="vine-flower-petal" cx="0" cy="3" r="1.8" />
-        <circle className="vine-flower-petal" cx="-3" cy="0" r="1.8" />
-        <circle className="vine-flower-center" cx="0" cy="0" r="1.4" />
+      <g className="vine-flower vine-flower--b" style={{ transitionDelay: "480ms" }} transform="translate(39 1)">
+        <circle className="vine-flower-petal" cx="0" cy="-3" r="1.9" />
+        <circle className="vine-flower-petal" cx="3" cy="0" r="1.9" />
+        <circle className="vine-flower-petal" cx="0" cy="3" r="1.9" />
+        <circle className="vine-flower-petal" cx="-3" cy="0" r="1.9" />
+        <circle className="vine-flower-center" cx="0" cy="0" r="1.5" />
       </g>
       {/* Weeds/grass tufts along the base */}
-      <path className="grass-blade" d="M16 64 C 15 59, 18 56, 16 51" style={{ transitionDelay: "100ms" }} />
-      <path className="grass-blade" d="M23 64 C 24 58, 21 55, 24 49" style={{ transitionDelay: "140ms" }} />
-      <path className="grass-blade" d="M31 64 C 30 58, 33 55, 30 49" style={{ transitionDelay: "180ms" }} />
-      <path className="grass-blade" d="M38 64 C 39 59, 36 56, 39 51" style={{ transitionDelay: "220ms" }} />
+      <path className="grass-blade" d="M16 64 C 12 59, 20 56, 16 51" style={{ transitionDelay: "100ms" }} />
+      <path className="grass-blade" d="M23 64 C 27 58, 18 55, 24 49" style={{ transitionDelay: "140ms" }} />
+      <path className="grass-blade" d="M31 64 C 27 58, 36 55, 30 49" style={{ transitionDelay: "180ms" }} />
+      <path className="grass-blade" d="M38 64 C 42 59, 32 56, 39 51" style={{ transitionDelay: "220ms" }} />
     </g>
   );
 }

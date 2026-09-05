@@ -98,25 +98,26 @@
 .sapling-leaf.active { transform: scale(1.06) rotate(-4deg); }
 .sapling-leaf--b.active { transform: scale(1.06) rotate(4deg); }
 
-/* Vine overgrowth (light mode) */
+/* Vine overgrowth (light mode) - vivid colors, independent of the muted theme palette */
 .overgrowth.vines .vine-line {
   fill: none;
-  stroke: var(--color-moss);
-  stroke-width: 2;
+  stroke: #4F9E4A;
+  stroke-width: 2.2;
   stroke-linecap: round;
-  stroke-dasharray: 90;
-  stroke-dashoffset: 90;
-  transition: stroke-dashoffset 850ms ease;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  filter: drop-shadow(0 0 2px rgba(79,158,74,0.5));
+  transition: stroke-dashoffset 950ms ease;
 }
 .overgrowth.vines.active .vine-line { stroke-dashoffset: 0; }
 .overgrowth.vines.active .vine-line--b { transition-delay: 60ms; }
 
 .overgrowth.vines .vine-leaf {
-  fill: var(--color-sage);
+  fill: #6BBF59;
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  transition: opacity 400ms ease, transform 400ms ease;
+  transition: opacity 380ms ease, transform 380ms ease;
 }
 .overgrowth.vines.active .vine-leaf {
   opacity: 1;
@@ -126,22 +127,24 @@
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  transition: opacity 450ms ease, transform 450ms ease;
+  transform: scale(0.3);
+  transition: opacity 450ms ease, transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .overgrowth.vines.active .vine-flower {
   opacity: 1;
+  transform: scale(1);
 }
-.overgrowth.vines .vine-flower-petal { fill: var(--color-dusty-pink); }
-.overgrowth.vines .vine-flower--b .vine-flower-petal { fill: var(--color-lavender); }
-.overgrowth.vines .vine-flower-center { fill: var(--color-gold); }
+.overgrowth.vines .vine-flower-petal { fill: #F080A0; }
+.overgrowth.vines .vine-flower--b .vine-flower-petal { fill: #B98CE8; }
+.overgrowth.vines .vine-flower-center { fill: #F5C244; }
 
 .overgrowth.vines .grass-blade {
   fill: none;
-  stroke: var(--color-moss);
-  stroke-width: 1.4;
+  stroke: #5CAE4F;
+  stroke-width: 1.6;
   stroke-linecap: round;
-  stroke-dasharray: 20;
-  stroke-dashoffset: 20;
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
   transition: stroke-dashoffset 500ms ease;
 }
 .overgrowth.vines.active .grass-blade {

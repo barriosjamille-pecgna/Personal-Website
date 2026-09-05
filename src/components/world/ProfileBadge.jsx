@@ -11,8 +11,33 @@ const LEAVES = [
   { top: "10%", left: "14%", delay: "2.6s", duration: "4.6s", rotate: "-35deg" },
 ];
 
+const SPARKLE_COLORS = ["var(--color-gold)", "var(--color-lavender)", "var(--color-crystal)", "var(--color-dusty-pink)"];
+const SPARKLE_COUNT = 14;
+
+function makeSparkles() {
+  return Array.from({ length: SPARKLE_COUNT }, (_, i) => {
+    const angle = (i / SPARKLE_COUNT) * Math.PI * 2 + Math.random() * 0.4;
+    const dist = 55 + Math.random() * 55;
+    return {
+      id: i,
+      x: Math.cos(angle) * dist,
+      y: Math.sin(angle) * dist,
+      delay: Math.random() * 140,
+      size: 6 + Math.random() * 8,
+      color: SPARKLE_COLORS[i % SPARKLE_COLORS.length],
+    };
+  });
+}
+
 export default function ProfileBadge() {
   const [pulseKey, setPulseKey] = useState(0);
+  const [sparkles, setSparkles] = useState([]);
+
+  function handleClick() {
+    setPulseKey((k) => k + 1);
+    setSparkles(makeSparkles());
+    window.setTimeout(() => setSparkles([]), 1000);
+  }
 
   return (
     <button
@@ -20,7 +45,7 @@ export default function ProfileBadge() {
       className="profile-badge"
       data-interactive="true"
       aria-label="A little portrait, tucked into the branches"
-      onClick={() => setPulseKey((k) => k + 1)}
+      onClick={handleClick}
     >
       <span className="profile-badge__leaves" aria-hidden="true">
         {LEAVES.map((leaf, i) => (
@@ -37,7 +62,27 @@ export default function ProfileBadge() {
           />
         ))}
       </span>
-      {pulseKey > 0 && <span key={pulseKey} className="profile-badge__glow" aria-hidden="true" />}
+      {pulseKey > 0 && (
+        <span key={pulseKey} className="profile-badge__glow-wrap" aria-hidden="true">
+          <span className="profile-badge__glow" />
+          <span className="profile-badge__glow profile-badge__glow--b" />
+          {sparkles.map((s) => (
+            <span
+              key={s.id}
+              className="profile-badge__sparkle"
+              style={{
+                "--sx": `${s.x}px`,
+                "--sy": `${s.y}px`,
+                animationDelay: `${s.delay}ms`,
+                fontSize: `${s.size}px`,
+                color: s.color,
+              }}
+            >
+              ✦
+            </span>
+          ))}
+        </span>
+      )}
       <img src="/assets/profile/profile.gif" alt="" className="profile-badge__img" />
     </button>
   );
