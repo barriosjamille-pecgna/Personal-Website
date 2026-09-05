@@ -12,6 +12,14 @@
 .portfolio-object.is-scattered {
   position: absolute;
   transform: translate(-50%, -50%);
+  cursor: grab;
+  touch-action: none;
+}
+
+.portfolio-object.is-scattered.is-dragging {
+  cursor: grabbing;
+  z-index: 15;
+  transition: none;
 }
 
 .portfolio-object.is-scattered.is-hovered {
@@ -126,6 +134,7 @@
 
 @media (max-width: 720px) {
   .portfolio-object__label { opacity: 1; transform: none; }
+  .image-frame { width: 84px; height: 84px; }
 }
 
 /* Soft glow frame for real cut-out object artwork */
@@ -134,8 +143,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   transition: transform 300ms ease;
 }
 
@@ -178,10 +187,10 @@
 .image-frame__overgrowth-svg {
   position: absolute;
   left: 50%;
-  bottom: -6px;
+  bottom: -8px;
   transform: translateX(-50%);
-  width: 70px;
-  height: 40px;
+  width: 95px;
+  height: 54px;
   overflow: visible;
   pointer-events: none;
 }

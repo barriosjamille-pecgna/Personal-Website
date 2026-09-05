@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../../theme/ThemeContext";
 import { portfolioSections } from "../../data/portfolioConfig";
 import PortfolioObject from "./PortfolioObject";
@@ -8,14 +8,46 @@ import CustomCursor from "../cursor/CustomCursor";
 import ThemeToggle from "./ThemeToggle";
 import PortfolioExplorer from "../explorers/PortfolioExplorer";
 import ProfileBadge from "./ProfileBadge";
+import MessengerOwl from "./MessengerOwl";
 import { sceneBackgrounds } from "../../data/sceneConfig";
 import "./world.css";
+
+const POSITIONS_KEY = "fairyworld-object-positions";
+
+function loadSavedPositions() {
+  try {
+    const raw = localStorage.getItem(POSITIONS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
 
 export default function World() {
   const { theme, transitioning } = useTheme();
   const [openSectionId, setOpenSectionId] = useState(null);
   const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches;
   const sceneImage = sceneBackgrounds[theme.mode];
+  const clearingRef = useRef(null);
+
+  // Each object's position, seeded from portfolioConfig.js but overridable
+  // by dragging — and remembered across visits via localStorage.
+  const [positions, setPositions] = useState(() => {
+    const saved = loadSavedPositions();
+    const initial = {};
+    portfolioSections.forEach((s) => {
+      initial[s.id] = saved[s.id] || s.position;
+    });
+    return initial;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(POSITIONS_KEY, JSON.stringify(positions));
+  }, [positions]);
+
+  function handlePositionChange(id, pos) {
+    setPositions((prev) => ({ ...prev, [id]: pos }));
+  }
 
   return (
     <div
@@ -34,13 +66,17 @@ export default function World() {
         <p className="world__intro-sub">
           Please, feel free to roam around and discover what this humble being has to offer.
         </p>
-        <p className="world__intro-hint">Nothing here is quite where you expect it to be. Take your time.</p>
       </header>
 
       <ThemeToggle />
       <ProfileBadge />
+      <MessengerOwl />
 
-      <main className={`world__clearing ${isMobile ? "is-mobile" : ""}`} aria-label="Portfolio sections">
+      <main
+        ref={clearingRef}
+        className={`world__clearing ${isMobile ? "is-mobile" : ""}`}
+        aria-label="Portfolio sections"
+      >
         {isMobile ? (
           <div className="world__list">
             {portfolioSections
@@ -59,8 +95,10 @@ export default function World() {
             <PortfolioObject
               key={section.id}
               section={section}
-              style={section.position}
+              style={positions[section.id]}
               onOpen={setOpenSectionId}
+              onPositionChange={handlePositionChange}
+              containerRef={clearingRef}
             />
           ))
         )}

@@ -48,7 +48,7 @@
   z-index: 4;
   max-width: 620px;
   margin: 0 auto;
-  padding: 12vh 24px 4vh;
+  padding: 26vh 24px 4vh;
   text-align: center;
   animation: fadeUp 1100ms ease both;
 }
@@ -62,7 +62,7 @@
 .world__intro-sub {
   margin-top: 18px;
   font-family: var(--font-display);
-  font-style: italic;
+  font-weight: 600;
   font-size: 1.25rem;
   color: var(--color-ink-soft);
 }
@@ -96,5 +96,5 @@
 }
 
 @media (max-width: 720px) {
-  .world__intro { padding: 8vh 20px 2vh; }
+  .world__intro { padding: 14vh 20px 2vh; }
 }

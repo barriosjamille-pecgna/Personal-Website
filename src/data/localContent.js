@@ -99,3 +99,11 @@ export const localPsychology = {
   ],
   skills: ["Placeholder skill"],
 };
+
+export const localContact = {
+  greeting: "Reach me here, or leave a note in the moss.",
+  email: "you@example.com",
+  linkedin: "",
+  resume: "",
+  credentials: ["Placeholder credential", "Placeholder certification"],
+};

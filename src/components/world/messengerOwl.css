@@ -1,0 +1,113 @@
+.messenger-owl {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 20;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  animation: owlBob 4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.28));
+  transition: transform 200ms ease;
+}
+
+.messenger-owl:hover {
+  transform: scale(1.08);
+}
+
+@keyframes owlBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.owl-glyph .owl-body { fill: var(--color-bark); }
+.owl-glyph .owl-belly { fill: var(--color-bg-deep); opacity: 0.9; }
+.owl-glyph .owl-eye-bg { fill: var(--color-crystal); opacity: 0.9; }
+.owl-glyph .owl-eye {
+  fill: var(--color-ink);
+  animation: owlBlink 5.5s ease-in-out infinite;
+  transform-origin: center;
+}
+.owl-glyph .owl-beak { fill: var(--color-gold); }
+.owl-glyph .owl-ear {
+  stroke: var(--color-bark);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+@keyframes owlBlink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.15); }
+}
+
+@media (max-width: 720px) {
+  .messenger-owl {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Envelope reveal */
+.envelope {
+  position: relative;
+  width: 150px;
+  height: 96px;
+  margin: 4px auto 22px;
+}
+
+.envelope__body {
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg-deep);
+  border: 1px solid var(--color-parchment-line);
+  border-radius: 4px;
+}
+
+.envelope__flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: var(--color-bark);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  opacity: 0.92;
+  animation: envelopeOpen 1000ms ease 200ms forwards;
+}
+
+@keyframes envelopeOpen {
+  0% { transform: rotate(0deg) translateY(0); opacity: 0.92; }
+  100% { transform: rotate(-165deg) translateY(-6px); opacity: 0.35; }
+}
+
+.envelope__seal {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--color-dusty-pink);
+  box-shadow: 0 0 6px var(--env-glow-color);
+  animation: sealFade 700ms ease 200ms forwards;
+}
+
+@keyframes sealFade {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+}
+
+.credentials-letter ul {
+  margin-top: 4px;
+}
+
+.credentials-letter li {
+  margin-bottom: 6px;
+}

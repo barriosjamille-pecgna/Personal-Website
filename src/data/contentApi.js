@@ -5,6 +5,7 @@ import {
   localIllustrations,
   localAdvocacy,
   localPsychology,
+  localContact,
 } from "./localContent";
 
 // Every explorer component calls one of these instead of touching
@@ -61,4 +62,11 @@ export async function getAdvocacyProjects() {
 export async function getPsychologyProfile() {
   // Simple enough to keep as a single-row table, or leave local until needed.
   return localPsychology;
+}
+
+export async function getContactInfo() {
+  // Edit src/data/localContent.js -> localContact for now. Move this to a
+  // simple single-row Supabase table later the same way the others work,
+  // if you want to update contact details without a redeploy.
+  return localContact;
 }

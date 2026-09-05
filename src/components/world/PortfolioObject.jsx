@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTheme } from "../../theme/ThemeContext";
 import "./portfolioObject.css";
 
@@ -10,23 +10,88 @@ const ICONS = {
   pin: PinIcon,
 };
 
-export default function PortfolioObject({ section, style, onOpen, isMobileList }) {
+const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+export default function PortfolioObject({
+  section,
+  style,
+  onOpen,
+  isMobileList,
+  onPositionChange,
+  containerRef,
+}) {
   const { theme } = useTheme();
   const [hovered, setHovered] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const Icon = ICONS[section.objectType] || LaptopIcon;
   const overgrowth = theme.objects.overgrowth; // 'vines' | 'mushrooms'
+  const draggedRef = useRef(false); // true right after a real drag, to swallow the trailing click
+
+  function handlePointerDown(e) {
+    if (isMobileList || !containerRef?.current) return;
+    // Only handle primary button / touch; let keyboard activation alone.
+    if (e.button !== undefined && e.button !== 0) return;
+
+    const container = containerRef.current;
+    const rect = container.getBoundingClientRect();
+    const startClientX = e.clientX;
+    const startClientY = e.clientY;
+    const startX = style.x;
+    const startY = style.y;
+    const btn = e.currentTarget;
+    let moved = false;
+    let finalX = startX;
+    let finalY = startY;
+
+    const onMove = (ev) => {
+      const dx = ev.clientX - startClientX;
+      const dy = ev.clientY - startClientY;
+      if (Math.abs(dx) + Math.abs(dy) > 4) {
+        if (!moved) setDragging(true);
+        moved = true;
+      }
+      if (moved) {
+        finalX = clamp(startX + (dx / rect.width) * 100, 2, 98);
+        finalY = clamp(startY + (dy / rect.height) * 100, 2, 98);
+        btn.style.left = `${finalX}%`;
+        btn.style.top = `${finalY}%`;
+      }
+    };
+
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      setDragging(false);
+      if (moved) {
+        draggedRef.current = true;
+        onPositionChange?.(section.id, { x: finalX, y: finalY });
+      }
+    };
+
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+  }
+
+  function handleClick() {
+    if (draggedRef.current) {
+      draggedRef.current = false;
+      return;
+    }
+    onOpen(section.id);
+  }
 
   return (
     <button
-      className={`portfolio-object ${isMobileList ? "is-list" : "is-scattered"} ${hovered ? "is-hovered" : ""}`}
+      className={`portfolio-object ${isMobileList ? "is-list" : "is-scattered"} ${hovered ? "is-hovered" : ""} ${dragging ? "is-dragging" : ""}`}
       style={isMobileList ? undefined : { left: `${style.x}%`, top: `${style.y}%` }}
       data-interactive="true"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
-      onClick={() => onOpen(section.id)}
-      aria-label={`Open ${section.title}`}
+      onPointerDown={handlePointerDown}
+      onClick={handleClick}
+      aria-label={`Open ${section.title}${isMobileList ? "" : " (drag to move it)"}`}
     >
       <span className="portfolio-object__icon">
         {section.image ? (
