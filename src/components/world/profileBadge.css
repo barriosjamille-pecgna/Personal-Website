@@ -1,0 +1,30 @@
+.profile-badge {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  z-index: 20;
+  width: 96px;
+  height: 96px;
+  animation: profileFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.3));
+}
+
+@keyframes profileFloat {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-5px) rotate(1.5deg); }
+}
+
+.profile-badge__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 720px) {
+  .profile-badge {
+    width: 64px;
+    height: 64px;
+    top: 12px;
+    left: 12px;
+  }
+}

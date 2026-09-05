@@ -7,21 +7,27 @@ import ParticleField from "../particles/ParticleField";
 import CustomCursor from "../cursor/CustomCursor";
 import ThemeToggle from "./ThemeToggle";
 import PortfolioExplorer from "../explorers/PortfolioExplorer";
+import ProfileBadge from "./ProfileBadge";
+import { sceneBackgrounds } from "../../data/sceneConfig";
 import "./world.css";
 
 export default function World() {
   const { theme, transitioning } = useTheme();
   const [openSectionId, setOpenSectionId] = useState(null);
   const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches;
+  const sceneImage = sceneBackgrounds[theme.mode];
 
   return (
-    <div className={`world world--${theme.mode}`}>
+    <div
+      className={`world world--${theme.mode} ${sceneImage ? "has-scene-image" : ""}`}
+      style={sceneImage ? { backgroundImage: `url(${sceneImage})` } : undefined}
+    >
       <CustomCursor />
       <CreatureLayer />
       <ParticleField />
       {transitioning && <div className="theme-veil" />}
 
-      <div className="world__sky" aria-hidden="true" />
+      {!sceneImage && <div className="world__sky" aria-hidden="true" />}
 
       <header className="world__intro">
         <h1>Welcome to my world.</h1>
@@ -32,6 +38,7 @@ export default function World() {
       </header>
 
       <ThemeToggle />
+      <ProfileBadge />
 
       <main className={`world__clearing ${isMobile ? "is-mobile" : ""}`} aria-label="Portfolio sections">
         {isMobile ? (

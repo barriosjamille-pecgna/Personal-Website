@@ -29,13 +29,34 @@ export default function PortfolioObject({ section, style, onOpen, isMobileList }
       aria-label={`Open ${section.title}`}
     >
       <span className="portfolio-object__icon">
-        <Icon overgrowth={overgrowth} hovered={hovered} />
+        {section.image ? (
+          <ImageFrame src={section.image} alt={section.title} hovered={hovered} overgrowth={overgrowth} />
+        ) : (
+          <Icon overgrowth={overgrowth} hovered={hovered} />
+        )}
       </span>
       <span className="portfolio-object__label">
         <strong>{section.title}</strong>
         <em>{section.tagline}</em>
       </span>
     </button>
+  );
+}
+
+/* Wraps a real object illustration in a soft glow instead of a hard
+   frame — these are cut-out objects (transparent background), not
+   photos, so we ground them into the scene with light/shadow rather
+   than cropping them into a box. Overgrowth (vines/mushrooms) still
+   reacts to hover on top, same as the placeholder icons. */
+function ImageFrame({ src, alt, hovered, overgrowth }) {
+  return (
+    <span className={`image-frame image-frame--${overgrowth} ${hovered ? "is-hovered" : ""}`}>
+      <span className="image-frame__glow" aria-hidden="true" />
+      <img src={src} alt={alt} loading="lazy" className="image-frame__art" />
+      <svg viewBox="0 0 54 64" className="image-frame__overgrowth-svg" aria-hidden="true">
+        <Overgrowth overgrowth={overgrowth} hovered={hovered} variant={5} />
+      </svg>
+    </span>
   );
 }
 

@@ -6,6 +6,12 @@
 // `position` is a percentage-based {x, y} placed within the World's
 // clearing on desktop; on mobile these are ignored and objects stack
 // in `order` sequence instead.
+//
+// `image` (optional): path to a real illustration or GIF for this
+// object, shown inside a decorative frame instead of the placeholder
+// line-art icon. Drop files in /public/assets/objects/ and reference
+// them here as "/assets/objects/your-file.png" (or .gif). Leave unset
+// to keep the placeholder icon. See public/assets/README.md.
 
 export const portfolioSections = [
   {
@@ -16,6 +22,7 @@ export const portfolioSections = [
     objectType: "laptop",
     position: { x: 22, y: 62 },
     explorer: "LaptopExplorer",
+    image: "/assets/objects/laptop.png",
   },
   {
     id: "writings",
@@ -25,6 +32,7 @@ export const portfolioSections = [
     objectType: "book",
     position: { x: 62, y: 70 },
     explorer: "WritingExplorer",
+    image: "/assets/objects/book.png",
   },
   {
     id: "illustrations",
@@ -34,6 +42,7 @@ export const portfolioSections = [
     objectType: "tablet",
     position: { x: 78, y: 40 },
     explorer: "IllustrationExplorer",
+    image: "/assets/objects/tablet.png",
   },
   {
     id: "advocacy",
@@ -43,6 +52,7 @@ export const portfolioSections = [
     objectType: "sapling",
     position: { x: 40, y: 30 },
     explorer: "AdvocacyExplorer",
+    image: "/assets/objects/sapling.png",
   },
   {
     id: "psychology",
@@ -52,6 +62,7 @@ export const portfolioSections = [
     objectType: "pin",
     position: { x: 12, y: 28 },
     explorer: "PsychologyExplorer",
+    image: "/assets/objects/pin.png",
   },
 ];
 
