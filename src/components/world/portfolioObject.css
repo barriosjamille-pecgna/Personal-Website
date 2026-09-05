@@ -1,0 +1,125 @@
+.portfolio-object {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  background: transparent;
+  transition: transform 260ms ease;
+}
+
+.portfolio-object.is-scattered {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.portfolio-object.is-scattered.is-hovered {
+  transform: translate(-50%, -50%) translateY(-4px);
+}
+
+.portfolio-object.is-list {
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--color-parchment-line);
+}
+
+.portfolio-object__icon {
+  display: block;
+  animation: drift 6s ease-in-out infinite;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+}
+
+.portfolio-object__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+  max-width: 160px;
+}
+
+.is-hovered .portfolio-object__label,
+.portfolio-object.is-list .portfolio-object__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-object.is-list .portfolio-object__label {
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 12px;
+}
+
+.portfolio-object__label strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-ink);
+}
+
+.portfolio-object__label em {
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+}
+
+/* Fills, theme-reactive via CSS vars */
+.obj-fill--bark { fill: var(--color-bark); }
+.obj-fill--bark-deep { fill: var(--color-moss-dark); }
+.obj-fill--glow { fill: var(--color-crystal); opacity: 0.55; }
+.obj-fill--parchment { fill: var(--color-bg-deep); stroke: var(--color-parchment-line); stroke-width: 1; }
+.obj-line { stroke: var(--color-ink-soft); stroke-width: 1; }
+.obj-line--pen { stroke: var(--color-gold); stroke-width: 2; stroke-linecap: round; }
+.obj-line--sketch { stroke: var(--color-gold); stroke-width: 1.4; }
+.obj-line--psy { stroke: var(--color-ink-soft); stroke-width: 1.6; }
+
+.sapling-leaf {
+  fill: var(--color-moss);
+  transform-origin: 27px 34px;
+  transition: transform 500ms ease;
+}
+.sapling-leaf.active { transform: scale(1.06) rotate(-4deg); }
+.sapling-leaf--b.active { transform: scale(1.06) rotate(4deg); }
+
+/* Vine overgrowth (light mode) */
+.overgrowth.vines .vine-line {
+  fill: none;
+  stroke: var(--color-moss);
+  stroke-width: 1.6;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset 700ms ease;
+}
+.overgrowth.vines.active .vine-line { stroke-dashoffset: 0; }
+.overgrowth.vines .vine-leaf {
+  fill: var(--color-sage);
+  opacity: 0;
+  transition: opacity 500ms ease 300ms;
+}
+.overgrowth.vines.active .vine-leaf { opacity: 1; }
+
+/* Mushroom overgrowth (dark mode) */
+.overgrowth.mushrooms .mushroom-cap {
+  fill: var(--color-lavender);
+  opacity: 0;
+  transition: opacity 600ms ease, transform 600ms ease;
+  transform: translateY(6px);
+}
+.overgrowth.mushrooms.active .mushroom-cap {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+.overgrowth.mushrooms .mushroom-cap.glow {
+  filter: drop-shadow(0 0 4px var(--color-crystal));
+}
+.overgrowth.mushrooms .mushroom-stem { fill: var(--color-ink-soft); opacity: 0; transition: opacity 600ms ease 200ms; }
+.overgrowth.mushrooms.active .mushroom-stem { opacity: 0.8; }
+
+@media (max-width: 720px) {
+  .portfolio-object__label { opacity: 1; transform: none; }
+}

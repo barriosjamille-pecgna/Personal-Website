@@ -1,0 +1,115 @@
+.explorer-intro {
+  font-style: italic;
+  color: var(--color-ink-soft);
+  margin-bottom: 20px;
+}
+
+.explorer-meta {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 14px;
+}
+
+.explorer-parchment-body {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.explorer-tags {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+}
+
+.explorer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explorer-list__item {
+  width: 100%;
+  text-align: left;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--color-parchment-line);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: padding-left 150ms ease;
+}
+
+.explorer-list__item:hover {
+  padding-left: 12px;
+}
+
+.explorer-list__item strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.explorer-list__item span {
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+}
+
+.explorer-plain-list {
+  margin: 0 0 18px;
+  padding-left: 20px;
+}
+
+.explorer-experience-row {
+  margin-bottom: 16px;
+}
+.explorer-experience-row span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+}
+
+.explorer-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.explorer-gallery__tile {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg-deep);
+  border: 1px solid var(--color-parchment-line);
+}
+
+.explorer-gallery__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.explorer-gallery__blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+
+.explorer-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.explorer-image-placeholder {
+  padding: 40px;
+  text-align: center;
+  background: var(--color-bg-deep);
+  border-radius: 8px;
+  color: var(--color-ink-soft);
+  margin-bottom: 14px;
+}

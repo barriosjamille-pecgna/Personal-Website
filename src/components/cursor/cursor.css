@@ -1,0 +1,60 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  margin-top: -13px;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  animation: cursorBob 2.6s ease-in-out infinite;
+}
+
+@keyframes cursorBob {
+  0%, 100% { margin-top: -13px; }
+  50% { margin-top: -16px; }
+}
+
+.custom-cursor.is-hovering {
+  animation-duration: 1s;
+}
+
+.custom-cursor.is-clicking .cursor-glyph {
+  transform: scale(0.78);
+}
+
+.cursor-glyph {
+  display: block;
+  transition: transform 120ms ease, filter 180ms ease;
+}
+
+.custom-cursor.is-hovering .cursor-glyph.crystal {
+  filter: drop-shadow(0 0 6px #8FE1EA);
+  transform: scale(1.15) rotate(8deg);
+}
+
+.custom-cursor.is-hovering .cursor-glyph.ladybug {
+  transform: scale(1.1);
+}
+
+.custom-cursor.is-hovering .ladybug-wing {
+  opacity: 0.6 !important;
+  animation: wingFlutter 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes wingFlutter {
+  from { opacity: 0.3; }
+  to { opacity: 0.8; }
+}
+
+.crystal {
+  animation: crystalSpin 6s linear infinite;
+  transform-origin: 13px 13px;
+}
+
+@keyframes crystalSpin {
+  from { filter: hue-rotate(0deg) drop-shadow(0 0 3px #8FE1EA); }
+  to { filter: hue-rotate(20deg) drop-shadow(0 0 3px #8FE1EA); }
+}

@@ -1,0 +1,80 @@
+.world {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--env-sky-top), var(--color-bg-base) 55%, var(--env-sky-bottom));
+  transition: background 900ms ease;
+}
+
+.world__sky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% -10%, var(--env-glow-color), transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.world__ground {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40vh;
+  background: linear-gradient(180deg, transparent, var(--env-vignette));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.world__intro {
+  position: relative;
+  z-index: 4;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 12vh 24px 4vh;
+  text-align: center;
+  animation: fadeUp 1100ms ease both;
+}
+
+.world__intro h1 {
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  color: var(--color-ink);
+  letter-spacing: 0.3px;
+}
+
+.world__intro-sub {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-ink-soft);
+}
+
+.world__intro-hint {
+  margin-top: 22px;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  opacity: 0.75;
+}
+
+.world__clearing {
+  position: relative;
+  z-index: 4;
+  height: 70vh;
+  min-height: 460px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.world__clearing.is-mobile {
+  height: auto;
+  padding: 0 20px 60px;
+}
+
+.world__list {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (max-width: 720px) {
+  .world__intro { padding: 8vh 20px 2vh; }
+}

@@ -1,0 +1,29 @@
+.theme-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg-base) 70%, transparent);
+  border: 1px solid var(--color-parchment-line);
+  backdrop-filter: blur(6px);
+  color: var(--color-ink);
+  font-size: 0.82rem;
+  transition: transform 200ms ease, background 500ms ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+}
+
+.theme-toggle__glyph {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 720px) {
+  .theme-toggle__label { display: none; }
+}
