@@ -51,10 +51,11 @@ export default function World() {
   }
 
   return (
-    <div
-      className={`world world--${theme.mode} ${sceneImage ? "has-scene-image" : ""}`}
-      style={sceneImage ? { backgroundImage: `url(${sceneImage})` } : undefined}
-    >
+    <div className={`world world--${theme.mode} ${sceneImage ? "has-scene-image" : ""}`}>
+      {sceneImage && (
+        <div className="world__bg-image" style={{ backgroundImage: `url(${sceneImage})` }} aria-hidden="true" />
+      )}
+      <div className="world__grain" aria-hidden="true" />
       <CustomCursor />
       <CreatureLayer />
       <ParticleField />

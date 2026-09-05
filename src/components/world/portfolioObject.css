@@ -102,18 +102,51 @@
 .overgrowth.vines .vine-line {
   fill: none;
   stroke: var(--color-moss);
-  stroke-width: 1.6;
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  transition: stroke-dashoffset 700ms ease;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  transition: stroke-dashoffset 850ms ease;
 }
 .overgrowth.vines.active .vine-line { stroke-dashoffset: 0; }
+.overgrowth.vines.active .vine-line--b { transition-delay: 60ms; }
+
 .overgrowth.vines .vine-leaf {
   fill: var(--color-sage);
   opacity: 0;
-  transition: opacity 500ms ease 300ms;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 400ms ease, transform 400ms ease;
 }
-.overgrowth.vines.active .vine-leaf { opacity: 1; }
+.overgrowth.vines.active .vine-leaf {
+  opacity: 1;
+}
+
+.overgrowth.vines .vine-flower {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 450ms ease, transform 450ms ease;
+}
+.overgrowth.vines.active .vine-flower {
+  opacity: 1;
+}
+.overgrowth.vines .vine-flower-petal { fill: var(--color-dusty-pink); }
+.overgrowth.vines .vine-flower--b .vine-flower-petal { fill: var(--color-lavender); }
+.overgrowth.vines .vine-flower-center { fill: var(--color-gold); }
+
+.overgrowth.vines .grass-blade {
+  fill: none;
+  stroke: var(--color-moss);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 500ms ease;
+}
+.overgrowth.vines.active .grass-blade {
+  stroke-dashoffset: 0;
+}
 
 /* Mushroom overgrowth (dark mode) */
 .overgrowth.mushrooms .mushroom-cap {
@@ -186,11 +219,9 @@
 
 .image-frame__overgrowth-svg {
   position: absolute;
-  left: 50%;
-  bottom: -8px;
-  transform: translateX(-50%);
-  width: 95px;
-  height: 54px;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
   overflow: visible;
   pointer-events: none;
 }

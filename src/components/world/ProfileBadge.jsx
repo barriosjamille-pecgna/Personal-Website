@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./profileBadge.css";
 
 const LEAVES = [
@@ -11,9 +12,17 @@ const LEAVES = [
 ];
 
 export default function ProfileBadge() {
+  const [pulseKey, setPulseKey] = useState(0);
+
   return (
-    <div className="profile-badge" aria-hidden="true">
-      <span className="profile-badge__leaves">
+    <button
+      type="button"
+      className="profile-badge"
+      data-interactive="true"
+      aria-label="A little portrait, tucked into the branches"
+      onClick={() => setPulseKey((k) => k + 1)}
+    >
+      <span className="profile-badge__leaves" aria-hidden="true">
         {LEAVES.map((leaf, i) => (
           <span
             key={i}
@@ -28,7 +37,8 @@ export default function ProfileBadge() {
           />
         ))}
       </span>
+      {pulseKey > 0 && <span key={pulseKey} className="profile-badge__glow" aria-hidden="true" />}
       <img src="/assets/profile/profile.gif" alt="" className="profile-badge__img" />
-    </div>
+    </button>
   );
 }

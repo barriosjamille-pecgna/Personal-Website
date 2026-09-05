@@ -4,8 +4,14 @@
   width: 200px;
   height: 200px;
   margin: 0 auto 10px;
+  padding: 20px;
   animation: profileFloat 6s ease-in-out infinite;
-  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.32));
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  transition: transform 200ms ease;
+}
+
+.profile-badge:hover {
+  transform: scale(1.03);
 }
 
 @keyframes profileFloat {
@@ -23,7 +29,7 @@
 
 .profile-badge__leaves {
   position: absolute;
-  inset: 0;
+  inset: 20px;
   z-index: 2;
   pointer-events: none;
 }
@@ -49,14 +55,39 @@
   100% { transform: rotate(var(--leaf-rotate)) scale(0); opacity: 0; }
 }
 
+.profile-badge__glow {
+  position: absolute;
+  inset: 8%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--env-glow-color), transparent 70%);
+  animation: profileGlowPulse 1100ms ease-out;
+}
+
+@keyframes profileGlowPulse {
+  0% { opacity: 0; transform: scale(0.6); }
+  30% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-badge,
+  .profile-badge__leaf,
+  .profile-badge__glow {
+    animation: none;
+  }
+}
+
 @media (max-width: 720px) {
   .profile-badge {
     width: 130px;
     height: 130px;
     margin-bottom: 6px;
+    padding: 12px;
   }
   .profile-badge__leaf {
     width: 7px;
     height: 10px;
   }
+  .profile-badge__leaves { inset: 12px; }
 }
