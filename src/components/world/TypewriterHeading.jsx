@@ -5,7 +5,7 @@ import { useTheme } from "../../theme/ThemeContext";
 // works correctly even when the heading wraps onto two lines on
 // narrower screens. Respects prefers-reduced-motion by just showing
 // the full text immediately.
-export default function TypewriterHeading({ text, speed = 65, as: Tag = "h1", className }) {
+export default function TypewriterHeading({ text, speed = 95, as: Tag = "h1", className }) {
   const { reducedMotion } = useTheme();
   const [shown, setShown] = useState(reducedMotion ? text : "");
   const [done, setDone] = useState(reducedMotion);
@@ -34,7 +34,7 @@ export default function TypewriterHeading({ text, speed = 65, as: Tag = "h1", cl
     <Tag className={className}>
       <span aria-hidden="true">
         {shown}
-        <span className={`typewriter-cursor ${done ? "is-idle" : ""}`}>▏</span>
+        {!done && <span className="typewriter-cursor">▏</span>}
       </span>
       <span className="sr-only">{text}</span>
     </Tag>

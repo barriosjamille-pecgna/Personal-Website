@@ -15,23 +15,13 @@
 .world.has-scene-image .world__intro h1,
 .world.has-scene-image .world__intro-sub {
   color: #FFFFFF;
-  text-shadow:
-    -1.5px -1.5px 0 rgba(30,20,15,0.85),
-    1.5px -1.5px 0 rgba(30,20,15,0.85),
-    -1.5px 1.5px 0 rgba(30,20,15,0.85),
-    1.5px 1.5px 0 rgba(30,20,15,0.85),
-    0 4px 10px rgba(0,0,0,0.4);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .typewriter-cursor {
   display: inline-block;
   margin-left: 2px;
-  animation: cursorBlink 1s step-end infinite;
-}
-
-.typewriter-cursor.is-idle {
-  animation: cursorBlink 1s step-end infinite;
-  opacity: 0.7;
+  animation: cursorBlink 0.9s step-end infinite;
 }
 
 @keyframes cursorBlink {
