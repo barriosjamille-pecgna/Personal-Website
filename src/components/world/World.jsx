@@ -9,6 +9,7 @@ import ThemeToggle from "./ThemeToggle";
 import PortfolioExplorer from "../explorers/PortfolioExplorer";
 import ProfileBadge from "./ProfileBadge";
 import MessengerOwl from "./MessengerOwl";
+import TypewriterHeading from "./TypewriterHeading";
 import { sceneBackgrounds } from "../../data/sceneConfig";
 import "./world.css";
 
@@ -63,7 +64,7 @@ export default function World() {
 
       <header className="world__intro">
         <ProfileBadge />
-        <h1>Welcome to my world.</h1>
+        <TypewriterHeading text="Welcome to my world." />
         <p className="world__intro-sub">
           Please, feel free to roam around and discover what this humble being has to offer.
         </p>

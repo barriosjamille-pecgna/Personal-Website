@@ -21,7 +21,11 @@ export default function MessengerOwl() {
         aria-label="A messenger owl carries a letter — open it"
         onClick={() => setOpen(true)}
       >
-        <OwlGlyph />
+        <span className="messenger-owl__body">
+          <img src="/assets/owl/owl.png" alt="" className="messenger-owl__img" />
+          <span className="messenger-owl__eyelid messenger-owl__eyelid--l" />
+          <span className="messenger-owl__eyelid messenger-owl__eyelid--r" />
+        </span>
       </button>
 
       {open && (
@@ -70,21 +74,5 @@ export default function MessengerOwl() {
         </Modal>
       )}
     </>
-  );
-}
-
-function OwlGlyph() {
-  return (
-    <svg viewBox="0 0 60 60" width="52" height="52" className="owl-glyph" aria-hidden="true">
-      <path d="M14 40 Q10 20 20 10 Q30 2 40 10 Q50 20 46 40 Z" className="owl-body" />
-      <circle cx="22" cy="24" r="8" className="owl-eye-bg" />
-      <circle cx="38" cy="24" r="8" className="owl-eye-bg" />
-      <circle cx="22" cy="24" r="3.4" className="owl-eye" />
-      <circle cx="38" cy="24" r="3.4" className="owl-eye" />
-      <polygon points="30,29 26,37 34,37" className="owl-beak" />
-      <path d="M13 12 L21 19" className="owl-ear owl-ear--l" />
-      <path d="M47 12 L39 19" className="owl-ear owl-ear--r" />
-      <ellipse cx="30" cy="46" rx="16" ry="8" className="owl-belly" />
-    </svg>
   );
 }

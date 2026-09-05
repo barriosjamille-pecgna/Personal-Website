@@ -14,18 +14,33 @@
 
 .world.has-scene-image .world__intro h1,
 .world.has-scene-image .world__intro-sub {
-  text-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(255,255,255,0.7), 0 2px 5px rgba(0,0,0,0.25);
+  color: #FFFFFF;
+  text-shadow:
+    -1.5px -1.5px 0 rgba(30,20,15,0.85),
+    1.5px -1.5px 0 rgba(30,20,15,0.85),
+    -1.5px 1.5px 0 rgba(30,20,15,0.85),
+    1.5px 1.5px 0 rgba(30,20,15,0.85),
+    0 4px 10px rgba(0,0,0,0.4);
 }
 
-[data-theme="light"].world.has-scene-image .world__intro h1,
-[data-theme="light"].world.has-scene-image .world__intro-sub {
-  color: #2E2418;
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: cursorBlink 1s step-end infinite;
 }
 
-[data-theme="dark"].world.has-scene-image .world__intro h1,
-[data-theme="dark"].world.has-scene-image .world__intro-sub {
-  color: #F5F1FA;
-  text-shadow: 0 0 8px rgba(20,10,30,0.9), 0 0 16px rgba(20,10,30,0.7), 0 2px 5px rgba(0,0,0,0.4);
+.typewriter-cursor.is-idle {
+  animation: cursorBlink 1s step-end infinite;
+  opacity: 0.7;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor { display: none; }
 }
 
 .world__sky {
@@ -64,8 +79,7 @@
 .world__intro-sub {
   margin-top: 18px;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--color-ink-soft);
 }
 
