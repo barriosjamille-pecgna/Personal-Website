@@ -62,6 +62,7 @@ export default function World() {
       {!sceneImage && <div className="world__sky" aria-hidden="true" />}
 
       <header className="world__intro">
+        <ProfileBadge />
         <h1>Welcome to my world.</h1>
         <p className="world__intro-sub">
           Please, feel free to roam around and discover what this humble being has to offer.
@@ -69,7 +70,6 @@ export default function World() {
       </header>
 
       <ThemeToggle />
-      <ProfileBadge />
       <MessengerOwl />
 
       <main

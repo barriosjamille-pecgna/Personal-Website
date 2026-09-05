@@ -1,18 +1,16 @@
 .profile-badge {
-  position: fixed;
-  top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-  width: 220px;
-  height: 220px;
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 10px;
   animation: profileFloat 6s ease-in-out infinite;
   filter: drop-shadow(0 8px 14px rgba(0,0,0,0.32));
 }
 
 @keyframes profileFloat {
-  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-1deg); }
-  50% { transform: translateX(-50%) translateY(-6px) rotate(1deg); }
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
 }
 
 .profile-badge__img {
@@ -55,7 +53,7 @@
   .profile-badge {
     width: 130px;
     height: 130px;
-    top: 12px;
+    margin-bottom: 6px;
   }
   .profile-badge__leaf {
     width: 7px;

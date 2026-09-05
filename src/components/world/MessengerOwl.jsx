@@ -27,9 +27,11 @@ export default function MessengerOwl() {
       {open && (
         <Modal title="A Letter Arrives" onClose={() => setOpen(false)}>
           <div className="envelope" aria-hidden="true">
-            <div className="envelope__body" />
-            <div className="envelope__flap" />
-            <div className="envelope__seal" />
+            <svg viewBox="0 0 150 100" className="envelope__svg">
+              <rect x="4" y="14" width="142" height="82" rx="4" className="envelope__body" />
+              <path d="M4 18 L75 68 L146 18" className="envelope__flap-line" fill="none" />
+              <path d="M4 18 L75 68 L146 18 L75 4 Z" className="envelope__flap" />
+            </svg>
           </div>
 
           {!info && <p className="explorer-intro">The seal is still warm…</p>}
